@@ -98,3 +98,9 @@ def test_possible_winner_lp_on_the_hull_instance(hull):
 
 def test_possible_winner_is_false_for_a_duplicate():
     assert not sc.is_possible_winner(np.array([[1.0, 0.0], [1.0, 0.0], [0.0, 1.0]]), 0)
+
+
+def test_percentile_with_two_alternatives_and_one_alternative():
+    """Mutationstest: Der Zweig n < 2 darf bei genau zwei Alternativen nicht greifen (Ränge 0 und 1), bei einer Alternative liefert er Nullen."""
+    assert sc.normalize(np.array([[1.0, 9.0], [5.0, 3.0]]), "perzentil").tolist() == [[0.0, 1.0], [1.0, 0.0]]
+    assert sc.normalize(np.array([[1.0, 9.0]]), "perzentil").tolist() == [[0.0, 0.0]]
